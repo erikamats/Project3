@@ -1,36 +1,41 @@
 import React, { Component } from "react";
-import "../Form/Form.css";
+// import { withRouter } from "react-router-dom";
 import API from "../../utils/API";
-// import CreatePost from "../../pages/CreatePost" 
 
-class Form extends Component {
+
+class CreatePost extends Component {
   state = {
     selectedFile: null,
+    fileName:"",
     title: "",
     body: "",
-    image: ""
-   };
-
-  fileChangedHandler = event => {
-    this.setState({ selectedFile: event.target.files[0] });
+    image: " https://images.all-free-download.com/images/graphicthumb/beautiful_scenic_03_hd_picture_166318.jpg"
   };
 
-  uploadHandler = () => {
-    API.post('my-domain.com/file-upload', this.state.selectedFile)
-    console.log(this.state.selectedFile);
-  };
+  refreshBlogs() {
+    console.log("this should go!");
+    API.getArticle().then(res => {
+      console.log(res.data);
+      this.setState({ blogs: res.data });
+      
+    });
+  }
+
+  reload(){
+     setTimeout(() => {
+    window.location.reload();
+   }, 1000);
+  }
+
+  componentDidMount() {
+    this.refreshBlogs();
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     console.log(name);
     this.setState({ [name]: value });
   };
-
-  reload(){
-    setTimeout(() => {
-   window.location.reload();
-  }, 1000);
- }
 
   postBlog = event => {
     event.preventDefault();
@@ -46,24 +51,35 @@ class Form extends Component {
       .catch(err => console.log(err));
   };
 
+  // image upload
+
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+
+  uploadHandler = () => {
+       console.log(this.state.selectedFile);
+  };
+
 
   render() {
     return (
-      <div className="form-container">
-        <form>
+      <div>
+          <form>
           <h1>
             <em>Update name of form here:</em>
           </h1>
-
          
           <h5>Insert an Image for your blog</h5>
           <div>
-          <input className="btn-choose" type="file" onChange={this.fileChangedHandler} />
+          <input className="btn-choose" type="file" name="fileName"  
+          value ={this.title} 
+          onChange={this.props.fileChangedHandler} />
           </div>
           <br/>
-          <div>
+          {/* <div>
             <button className="btn-upload" onClick={this.uploadHandler}>Upload!</button>
-          </div>
+          </div> */}
 
           <br/>
 
@@ -87,7 +103,7 @@ class Form extends Component {
             />
           </div>
           <div>
-            <button onClick={this.postBlog}>Submit</button>
+            <button onClick={this.postBlog && this.uploadHandler}>Submit</button>
           </div>
         </form>
       </div>
@@ -95,4 +111,5 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default CreatePost;
+

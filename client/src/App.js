@@ -3,12 +3,16 @@ import { Router, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import Auth from "./auth/Auth";
 import history from "./history";
-import Header from "./components/Header";
+import ControlledCarousel from "./components/Header";
 import Nav from "./components/Nav";
+import Menu from "./components/Menu";
 import Home from "./pages/Home";
-import CreatePost from "./pages/CreatPost";
+import Gallery from "./pages/Gallery";
+import Donations from "./pages/Donations";
+import Contact from "./pages/Contact";
+import CreatePost from "./pages/CreatePost";
 import { Forum, EditForum } from "./pages/Forum";
-import Footer from "./components/Footer";
+
 import Callback from "./pages/Callback";
 import Profile from "./pages/Profile";
 
@@ -20,8 +24,9 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <Nav auth={auth} />
-          <Header />
+          <ControlledCarousel />
 
+          <Menu />
           <div>
             {/* <Route exact path="/" component={Home} /> */}
             <Route
@@ -31,18 +36,24 @@ class App extends Component {
                 return <Home auth={auth} {...props} />;
               }}
             />
-
-              <Route
+            <Route
+              exact
+              path="/home"
+              render={props => {
+                return <Home auth={auth} {...props} />;
+              }}
+            />
+            <Route
               path="/createpost"
               render={props => {
                 return auth.isAuthenticated() &&
                   auth.userHasScopes(["write:blog"]) ? (
                   <CreatePost auth={auth} {...props} />
                 ) : (
-                  <Redirect to="/home" />
+                  <Home auth={auth} {...props} />
                 );
               }}
-              />
+            />
 
             <Route
               exact
@@ -63,6 +74,23 @@ class App extends Component {
                 );
               }}
             />
+
+            <Route
+              exact
+              path="/gallery"
+              render={props => {
+                return <Gallery auth={auth} {...props} />;
+            
+              }}
+            />
+
+            <Route
+              exact
+              path="/help"
+              render={props => {
+                return <Donations auth={auth} {...props} />;
+              }}
+            />
             <Route
               exact
               path="/profile"
@@ -76,6 +104,14 @@ class App extends Component {
             />
 
             <Route
+              exact
+              path="/contact"
+              render={props => {
+                return <Contact auth={auth} {...props} />;
+              }}
+            />
+
+            <Route
               path="/callback"
               render={props => {
                 auth.handleAuthentication(props);
@@ -83,7 +119,6 @@ class App extends Component {
               }}
             />
           </div>
-          <Footer />
         </div>
       </Router>
     );

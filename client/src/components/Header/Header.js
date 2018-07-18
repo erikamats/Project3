@@ -3,14 +3,25 @@
 import React from "react";
 import "./Header.css";
 
-const Header = () => (
 
-    <header className="header">
-        <h1 className="header1">Page for Nicaragua</h1>
-     
-        <h3 className="header3"> <em>slogan maybe</em></h3>
-    </header>
+class Header extends React.Component {
 
-);
+  render() {
+    return (
+      <div className="container">
+        <header className="header-container">
+          
+            <h6 className=" header-item h1">¡ NicaLibre !</h6>
+
+            <h5 className="header-item h2"> <em>Happening Now</em></h5>
+          
+        </header>
+
+
+      </div>
+  
+    );
+  }
+}
 
 export default Header;

@@ -1,51 +1,113 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as  Link } from "react-router-dom";
 import "./Nav.css";
 
 class Nav extends Component {
-  render() {
-    return (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <img src={require("./coaNicaragua.png")} id="navimg" width="30" height="30" alt=""/>
-  <Link className="navbar-brand" to="/">
-    Nicaragua
-  </Link>
-  <button
-    className="navbar-toggler"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span className="navbar-toggler-icon" />
-  </button>
+  constructor(props) {
+    super(props);
+    this.state = {
 
+      selectedNavKey: "/"
 
-  <div className="collapse navbar-collapse" id="navbarNav">
-    <ul className="navbar-nav ml-auto">
-    <li className="nav-item">
-        <Link className="nav-link" to="/">Home</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/forum">Forum</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/photos">Photos</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/donations">Donations</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/contact">Contact</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/login">Get Started</Link>
-      </li>
-    </ul>
-  </div>
-</nav>
-    )};
-  } 
+    };
    
-  export default Nav;
+  }
+
+  componentDidMount() {
+    this.checkPage();
+    window.addEventListener('hashchange', () => {
+      this.setState({ selectedNavKey: document.location.hash || '/' });
+    })
+  }
+
+ 
+
+  checkPage() {
+    const homeLocation = "/";
+    const location = document.location.pathname;
+
+    if (location !== homeLocation) {
+      console.log(`This is your Route location: ${location}`);
+    } else {
+      console.log(`this is the home route --> ${homeLocation}`);
+    }
+  }
+
+
+  render() {
+    const loggedIn = this.props.auth.isAuthenticated();
+    // const canWrite = this.props.auth.userHasScopes([
+    //   "write:blog",
+    //   "roles: admin"
+    // ]);
+    const homeLocation = "/";
+    const location = document.location.pathname;
+
+    return (
+      <div>
+
+        <nav className="navbar navbar-expand-lg">
+          <img
+            src={require("./coaNicaragua.png")}
+            id="navimg"
+            alt=""
+            className="navbar-brand"
+            href="/"
+          />
+
+  
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse shift" id="navbarNav">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item nav-link">
+              {location === homeLocation ? ("") :(
+                <Link to="/">
+                  <button className="btn" onClick={this.props.auth.logout}>
+                    Home
+                  </button>
+                </Link>
+              )
+              }
+                
+              </li>
+
+              <li className="nav-item nav-link">
+                {!loggedIn ? (
+                  <button className="btn" onClick={this.props.auth.login}>
+                    Log In
+                  </button>
+                ) : (
+                  <button className="btn" onClick={this.props.auth.logout}>
+                    Log Off
+                  </button>
+                )}
+
+                {/* {loggedIn && canWrite ? (
+                  <Link to="/createpost">
+                    <button>Create a Post&nbsp; </button>
+                  </Link>
+                ) : (
+                  ""
+                )}
+                {loggedIn ? <Link to="/profile">Profile&nbsp;</Link> : ""} */}
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    );
+  }
+}
+
+export default Nav;

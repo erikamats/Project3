@@ -4,8 +4,9 @@ import auth0 from 'auth0-js';
 import history from "../history";
 
 const origin = window.location.origin;
+
 export default class Auth {
-    requestedScopes = 'openid profile read:blog write:blog'
+    requestedScopes = 'openid profile read:blog write:blog roles:admin'
     auth0 = new auth0.WebAuth({
     domain: 'matsi.auth0.com',
     clientID: 'T-nA041F0yt5r9u-svHTQSb3rgfc2kMv',

@@ -1,24 +1,49 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
+import CreatePost from "../CreatePost";
+import Wrapper from "../../components/Wrapper";
+
+import "../../pages/Home/Home.css";
 
 class Home extends Component {
   state = {
-    blogs: []
+    blogs: [
+      {
+        _id: 1,
+        title: "Blog Update 1 TEst",
+        body: "Or is it????"
+      },
+      {
+        _id: 2,
+        title: "Another example of a Trending/Update Blog",
+        body: "Or is it????"
+      }
+    ]
   };
 
   refreshBlogs() {
     console.log("this should go!");
     API.getArticle().then(res => {
       console.log(res.data);
-      
       this.setState({ blogs: res.data });
     });
   }
 
   componentDidMount() {
     this.refreshBlogs();
+  }
+
+  checkPage() {
+    const homeLocation = "/";
+    const location = this.props.location.pathname;
+
+    if (location !== homeLocation) {
+      console.log(`This is your Route location: ${location}`);
+    } else {
+      console.log("this is the home route");
+    }
   }
 
   handleInputChange = event => {
@@ -41,43 +66,67 @@ class Home extends Component {
 
   render() {
     const loggedIn = this.props.auth.isAuthenticated();
-    const canWrite = this.props.auth.userHasScopes(["write:blog"]);
+    // const canWrite = this.props.auth.userHasScopes(["write:blog","roles: admin"]);
 
     return (
-      <div>
+      <div className="container">
+        {/* <div> Check console to show current location of page</div>
+      
         {!loggedIn ? (
           <button onClick={this.props.auth.login}>Log In</button>
         ) : (
           <button onClick={this.props.auth.logout}>Log Off</button>
-        )}
+        )} */}
 
-        {/* <Link to="/">Home&nbsp;</Link>  */}
+        {/* <Link to="/">
+          <button>Home&nbsp; </button>
+        </Link>
 
         {loggedIn && canWrite ? (
-          <Link to="/createpost">Create a Post&nbsp;</Link>
+          <Link to="/createpost">
+            <button>Create a Post&nbsp; </button>
+          </Link>
         ) : (
           ""
         )}
-        {loggedIn ? <Link to="/profile">Profile&nbsp;</Link> : ""}
-
-        <br />
-        <br />
+        {loggedIn ? <Link to="/profile">Profile&nbsp;</Link> : ""}  */}
 
         <h1> Updates / Trending Now </h1>
 
-        <div>
-          {/* Map each of our posts */
-          this.state.blogs.map(post => (
-            <div key={post._id}>
-              <h2>{post.title}</h2>
-              <h5>Created at: {post.createdAt}</h5>
-              <p><em>{post.body}</em></p>
-            </div>
-          ))}
-          <div>
-        
-          </div>
-          
+        <div className="card-container">
+          <Wrapper>
+            {/* Map each of our posts */
+            this.state.blogs.map(post => (
+              <div key={post._id} className="collection ">
+                <div className="card col-lg-4 col-md-4 col-sm-6 col-12">
+                  <div className="img-container">
+                    <img
+                      alt={post.title}
+                      src="https://images.all-free-download.com/images/graphicthumb/beautiful_scenic_03_hd_picture_166318.jpg "
+                    />
+                  </div>
+                  <div className="content">
+                    <ul>
+                      <li className="content li">
+                        <strong>Post Title:</strong> {post.title}
+                      </li>
+                      <li className="content li">
+                        <strong>Posted:</strong> {post.createdAt}
+                      </li>
+                      <li className="content li">
+                        <strong>Content:</strong> {post.body}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Wrapper>
+        </div>
+
+        <div className="createpost">
+          {/* if logged in and canWrite, then display CreatePost, otherwise display nothing else */}
+          {loggedIn ? <CreatePost /> : ""}
         </div>
       </div>
     );
