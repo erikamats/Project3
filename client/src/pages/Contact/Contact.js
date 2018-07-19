@@ -5,13 +5,19 @@ class Contact extends Component {
   render() {
     return (
       <div className="container">
-            <div className="form-text">
-                <h1>Want to reach out? </h1>
-                <p>Please submit your  and your feedback!</p>
-            </div>
+        <em>Check console to show current location of page</em>
+        <div>
+          <h2>To Add:</h2>
+          <p>Render Donations section</p>
+        </div>
+
+        <div className="form-text">
+          <h1>Want to reach out? </h1>
+          <p>Please submit your and your feedback!</p>
+        </div>
 
         <form>
-        <div className="form-row">
+          <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="contactFirstName">First Name:</label>
               <input
@@ -30,7 +36,7 @@ class Contact extends Component {
                 placeholder="Last Name"
               />
             </div>
-</div>
+          </div>
 
           <div className="form-row">
             <div className="form-group col-md-6">
@@ -44,25 +50,30 @@ class Contact extends Component {
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="inputPhone">Phone Number</label>
-              <input className="form-control" type="tel" id="contactPhone" placeholder="(555)-555-5555"
+              <input
+                className="form-control"
+                type="tel"
+                id="contactPhone"
+                placeholder="(555)-555-5555"
               />
             </div>
           </div>
           <div className="form-group">
-  <label htmlFor="Message">Message:</label>
-  <textarea className="form-control" rows="5" id="contactMessage" placeholder="Don't be shy, drop us a few lines! We'd love to hear from you!"></textarea>
-</div>
-     
+            <label htmlFor="Message">Message:</label>
+            <textarea
+              className="form-control"
+              rows="5"
+              id="contactMessage"
+              placeholder="Don't be shy, drop us a few lines! We'd love to hear from you!"
+            />
+          </div>
+
           <button type="submit" className="btn submit-button">
             Sign in
           </button>
-       
-
         </form>
-        
-     
       </div>
     );
-}
+  }
 }
 export default Contact;

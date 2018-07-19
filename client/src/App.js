@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import Menu from "./components/Menu";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
-import Donations from "./pages/Donations";
+// import Donations from "./pages/Donations";
 import Contact from "./pages/Contact";
 import CreatePost from "./pages/CreatePost";
 import { Forum, EditForum } from "./pages/Forum";
@@ -88,7 +88,7 @@ class App extends Component {
               exact
               path="/help"
               render={props => {
-                return <Donations auth={auth} {...props} />;
+                  return <Contact auth={auth} {...props} />;
               }}
             />
             <Route
@@ -103,12 +103,13 @@ class App extends Component {
               }}
             />
 
-            <Route
+            {/* <Route
               exact
               path="/contact"
               render={props => {
                 return <Contact auth={auth} {...props} />;
-              }}
+
+              }} */}
             />
 
             <Route

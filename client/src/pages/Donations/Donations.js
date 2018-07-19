@@ -11,11 +11,17 @@ class Donations extends Component {
     <p>
       Render Donations section
       </p>
-      <p>
-      Render Contact Us form
-    </p>
+      </div>
+
+
+
+
+
+
+
     </div>
-    </div>
+
+    
     )
     
   }
