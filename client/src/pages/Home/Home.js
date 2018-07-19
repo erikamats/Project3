@@ -1,23 +1,20 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import API from "../../utils/API";
-
-import CreatePost from "../CreatePost";
-import Wrapper from "../../components/Wrapper";
-
-import "../../pages/Home/Home.css";
+// import Form from "../../components/Form";
+import CreatePost from "./CreatePost";
 
 class Home extends Component {
   state = {
     blogs: [
       {
         _id: 1,
-        title: "Blog Update 1 TEst",
+        title: "This is a test",
         body: "Or is it????"
       },
       {
         _id: 2,
-        title: "Another example of a Trending/Update Blog",
+        title: "This is a test",
         body: "Or is it????"
       }
     ]
@@ -93,40 +90,18 @@ class Home extends Component {
 
         <h1> Updates / Trending Now </h1>
 
-        <div className="card-container">
-          <Wrapper>
-            {/* Map each of our posts */
-            this.state.blogs.map(post => (
-              <div key={post._id} className="collection ">
-                <div className="card col-lg-4 col-md-4 col-sm-6 col-12">
-                  <div className="img-container">
-                    <img
-                      alt={post.title}
-                      src="https://images.all-free-download.com/images/graphicthumb/beautiful_scenic_03_hd_picture_166318.jpg "
-                    />
-                  </div>
-                  <div className="content">
-                    <ul>
-                      <li className="content li">
-                        <strong>Post Title:</strong> {post.title}
-                      </li>
-                      <li className="content li">
-                        <strong>Posted:</strong> {post.createdAt}
-                      </li>
-                      <li className="content li">
-                        <strong>Content:</strong> {post.body}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Wrapper>
-        </div>
+        <div>
+          {/* Map each of our posts */
+          this.state.blogs.map(post => (
+            <div key={post._id}>
+              <h1>{post.title}</h1>
+              <h3>Created at: {post.createdAt}</h3>
+              <p>{post.body}</p>
+            </div>
+          ))}
 
-        <div className="createpost">
-          {/* if logged in and canWrite, then display CreatePost, otherwise display nothing else */}
-          {loggedIn ? <CreatePost /> : ""}
+          <CreatePost/>
+          {/* <Form/> */}
         </div>
       </div>
     );

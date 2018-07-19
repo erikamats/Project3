@@ -3,12 +3,8 @@ const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema ({
     title: String,
-    body: String
-,
-}, {
-    timestamps: true
-  });
-
+    body: String,
+});
 
 const Article = mongoose.model("Article", ArticleSchema);
 

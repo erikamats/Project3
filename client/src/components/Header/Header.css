@@ -21,9 +21,7 @@ header{
     border-bottom: .1em solid rgb(235, 222, 176);
 }
 
-.h2 {
-  font-family: 'Lato', sans-serif !important;
-  color: orange !important;
-  padding-top: 0 !important;
-  font-size: 1.2em !important;
+
+.header3{
+    color: rgb(202, 135, 81);
 }
