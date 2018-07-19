@@ -28,6 +28,7 @@ export default class Menu extends React.Component {
         <Nav tabs className="nav-tabs">
           <NavItem className=".nav-item">
             <NavLink
+            href="/"
               className={classnames({ active: this.state.activeTab === "1" })}
               onClick={() => {
                 this.toggle("1");
