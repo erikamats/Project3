@@ -104,7 +104,7 @@ class App extends Component {
                 return <Contact auth={auth} {...props} />;
 
               }} */}
-            />
+           
             <Route
               path="/callback"
               render={props => {

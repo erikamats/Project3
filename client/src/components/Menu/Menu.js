@@ -2,7 +2,7 @@ import React from "react";
 
 import { Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
-import "bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Menu.css";
 
 export default class Menu extends React.Component {

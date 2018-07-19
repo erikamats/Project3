@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Contact.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Contact extends Component {
   render() {
