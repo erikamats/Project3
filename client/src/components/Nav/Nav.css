@@ -1,28 +1,68 @@
-#navimg {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
 /* NAVIGATION */
 nav {
   width: 95%;
+  max-height: 80px;
   margin: 0 auto;
-   font-family: "Lato", sans-serif;
-  font-weight: 600;
- /* box-shadow: 0px 5px 0px #dedede; */
+  font-family: "Lato", sans-serif;
   animation: 1s ease-out 0s 1 slideInFromTop;
+  border-bottom: 0.1em solid  rgb(13, 100, 195) !important;
+ 
 }
 
+.logo-container{
+  justify-content: center !important;
+  align-content: center !important;
 
+}
+
+.logoimage {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  float: left;
+  margin-right: .9vw;
+}
+
+.logotext {
+  margin:0;
+}
+
+.header1 {
+  font-size: 2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgb(13, 100, 195) !important;
+  /* font-size: 7vh; */
+  font-family: "Raleway", sans-serif !important;
+  border-bottom: 0.13em solid rgb(235, 222, 176);
+  float: left;
+  letter-spacing: 1px;
+}
+
+p{
+  margin-bottom:0 !important;
+  padding:0;
+}
+.header2 {
+  font-family: "Lato", sans-serif !important;
+  color: rgb(227, 159, 32) !important;
+  font-size: 0.692rem !important;
+  font-weight: 200 !important;
+  letter-spacing: 1.2px;
+  float: left;
+  margin: 1px;
+  text-align: center;
+
+ 
+}
 
 .nav-link {
   position: relative;
   transition: all 0.5s;
- }
+}
 
 .nav-item {
-  font-family: 'Kanit', sans-serif !important;
+  font-family: "Kanit", sans-serif !important;
   font-size: 0.8em;
 }
 
@@ -41,9 +81,10 @@ nav {
   height: 1px !important;
 }
 
-.nav-link:hover , .btn:hover{
+.nav-link:hover,
+.btn:hover {
   z-index: 1;
-  color:  rgb(215, 5, 5) !important;
+  color: rgb(215, 5, 5) !important;
 }
 
 .nav-link:hover:after {
@@ -56,7 +97,7 @@ nav {
 .btn {
   /* rgba(7, 129, 235, 0.235) */
   color: rgb(13, 100, 195);
-  border-radius: .3em;
+  border-radius: 0.3em;
   /* border: 0; */
   border: 0.1em solid rgba(199, 197, 197, 0.482);
   padding: 0.3em 1.5em;

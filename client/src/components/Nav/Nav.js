@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-import { BrowserRouter as  Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import "./Nav.css";
 
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       selectedNavKey: "/"
-
     };
-   
   }
 
   componentDidMount() {
     this.checkPage();
-    window.addEventListener('hashchange', () => {
-      this.setState({ selectedNavKey: document.location.hash || '/' });
-    })
+    window.addEventListener("hashchange", () => {
+      this.setState({ selectedNavKey: document.location.hash || "/" });
+    });
   }
-
- 
 
   checkPage() {
     const homeLocation = "/";
@@ -33,7 +28,6 @@ class Nav extends Component {
     }
   }
 
-
   render() {
     const loggedIn = this.props.auth.isAuthenticated();
     // const canWrite = this.props.auth.userHasScopes([
@@ -45,17 +39,25 @@ class Nav extends Component {
 
     return (
       <div>
-
         <nav className="navbar navbar-expand-lg">
-          <img
-            src={require("./coaNicaragua.png")}
-            id="navimg"
-            alt=""
-            className="navbar-brand"
-            href="/"
-          />
+          <div className="logo-container">
+            <img
+              src={require("./coaNicaragua.png")}
+              id="navimg"
+              alt=""
+              className="navbar-brand logoimage"
+              href="/"
+            />
 
-  
+            <div className="logotext">
+              <p className=" header-item header1">NicaLibre</p>
+
+              <p className="header-item header2">
+                <em> Happening Now </em>
+              </p>
+            </div>
+          </div>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -71,15 +73,15 @@ class Nav extends Component {
           <div className="collapse navbar-collapse shift" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item nav-link">
-              {location === homeLocation ? ("") :(
-                <Link to="/">
-                  <button className="btn" onClick={this.props.auth.logout}>
-                    Home
-                  </button>
-                </Link>
-              )
-              }
-                
+                {location === homeLocation ? (
+                  ""
+                ) : (
+                  <Link to="/">
+                    <button className="btn" onClick={this.props.auth.logout}>
+                      Home
+                    </button>
+                  </Link>
+                )}
               </li>
 
               <li className="nav-item nav-link">
