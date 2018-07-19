@@ -54,7 +54,6 @@ class App extends Component {
                 );
               }}
             />
-
             <Route
               exact
               path="/forum"
@@ -62,7 +61,6 @@ class App extends Component {
                 return <Forum auth={auth} {...props} />;
               }}
             />
-
             <Route
               path="/editforum"
               render={props => {
@@ -74,21 +72,18 @@ class App extends Component {
                 );
               }}
             />
-
             <Route
               exact
               path="/gallery"
               render={props => {
                 return <Gallery auth={auth} {...props} />;
-            
               }}
             />
-
             <Route
               exact
               path="/help"
               render={props => {
-                  return <Contact auth={auth} {...props} />;
+                return <Contact auth={auth} {...props} />;
               }}
             />
             <Route
@@ -102,7 +97,6 @@ class App extends Component {
                 );
               }}
             />
-
             {/* <Route
               exact
               path="/contact"
@@ -111,7 +105,6 @@ class App extends Component {
 
               }} */}
             />
-
             <Route
               path="/callback"
               render={props => {
